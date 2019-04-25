@@ -22,3 +22,11 @@ print(string.index('M'), " ", string.index("Khan"))
 
 # Replace a substring or character
 print(string.replace('My', 'Your'))
+
+# Convert one data type to string
+num = 5
+# This is not allowed
+# print("Value of num: " + num)
+# This is allowed though
+print(num)
+print("Value of num: " + str(num))
