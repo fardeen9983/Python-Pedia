@@ -81,3 +81,20 @@ temp = names  # A refernece
 copy = names.copy()  # A copy
 names.append("XYZ")
 print(temp, '\n', copy)
+
+# 2-D lists as arrays
+mat = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+]
+print(mat)
+
+# Access values using row column index
+print(mat[0][2])
+
+# Print all values
+for row in mat:
+    for col in row:
+        print(col, end=" ")
+    print()

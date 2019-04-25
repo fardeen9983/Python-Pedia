@@ -28,3 +28,14 @@ def cube(num):
 
 
 print("Cube of ", n1, " : ", cube(n1))
+
+
+# find exponent
+def exp(base, pow):
+    res = 1
+    for i in range(pow):
+        res *= base
+    return res
+
+
+print("2^3 : ", exp(2, 3))
