@@ -12,4 +12,4 @@ class Rect:
 class Sqaure(Rect):
     def __init__(self, side):
         # Call the Super class constructor first
-        super(Sqaure, self).__init__(side, side)
+        super().__init__(side, side)
