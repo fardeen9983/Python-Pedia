@@ -9,3 +9,6 @@ print(student1.gpa)
 
 # Call a function on student obj
 print(student1.performance())
+
+# Delete the Student Object
+del student1

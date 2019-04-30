@@ -1,5 +1,8 @@
 # Class representing a Rectangle with passed on length and breadth and get back the area
 class Rect:
+    width = 0
+    height = 0
+
     def __init__(self, length, breadth):
         self.length = length
         self.breadth = breadth

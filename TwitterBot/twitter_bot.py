@@ -4,6 +4,7 @@ This File contains all the code required to create a Twitter Bot
 
 # import python library for Twitter
 import time
+
 import tweepy
 
 # Assign the consumer keys and access tokens
@@ -54,7 +55,6 @@ def fetch_lat_mention_id(file_name):
 Define a function to reply to the tweets by calling the function every few seconds
 Update the mention timeline to fetch mentions after the last processed mention
 """
-
 
 def reply_to_tweets():
     id = fetch_lat_mention_id(ID_FILE)
