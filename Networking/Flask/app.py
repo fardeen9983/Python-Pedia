@@ -1,5 +1,5 @@
 # Import flask module
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, make_response
 
 # Create a Flask app with name of current module as argument
 app = Flask(__name__)
@@ -22,6 +22,8 @@ def hello_world():
 app.add_url_rule('/hello', 'hello', hello_world)
 
 
+# --------------------------------------------------------------------------------------#
+
 # Dynamic URL binding with variables
 # Possible converters used as variables : int, float, path
 @app.route("/hello/<name>")
@@ -39,6 +41,8 @@ def hotel_cost(price):
     return "Your total charges are " + str(price)
 
 
+# --------------------------------------------------------------------------------------#
+
 """
 If you create you route as /route it will not be accessible through URL pattern of /route/
 So to be safe keep route patterns of the following format always : /route/
@@ -49,6 +53,8 @@ So to be safe keep route patterns of the following format always : /route/
 def route():
     return "Route accessed"
 
+
+# --------------------------------------------------------------------------------------#
 
 # Use for url_for method
 
@@ -75,6 +81,8 @@ def hello_user(name):
         return redirect(url_for('hello_guest'))
 
 
+# --------------------------------------------------------------------------------------#
+
 """
 HTTP methods:
 GET : Sends data through URL rewriting in unencrypted format
@@ -82,6 +90,13 @@ POST : USed to send data to Server through request body. Secure
 HEAD : Same as GET but without response body
 PUT : Replace current resource at the URl with the sent one
 DELETE : Delete resources at the specified URL 
+
+Global request object members
+form    : Dictionary object containing key-value pairs of form-data
+args    : Parsed contents of query string part of URL arguments
+cookies : Dictionary object holding key-value pairs
+files   : Data regarding uploaded files
+method  : The HTTP method used
 """
 
 
@@ -103,18 +118,33 @@ def login():
     if request.method == 'POST':
         # Access form variable
         name = request.form["name"]
-        return redirect(url_for('success', name=name))
+        res = make_response(redirect(url_for('success', name=name)))
     else:
         # Access URL arguments
         name = request.args.get('name')
-        return redirect(url_for('success', name=name))
+        res = make_response(redirect(url_for('success', name=name)))
+    # Set Cookie key value pair
+    res.set_cookie('name', name)
+    return res
+
+
+"""
+Using Cookies
+Cookies are small files stored on client machine with data as key value pairs used for session management 
+"""
 
 
 # Invoked after /login route to welcome user
 @app.route('/success/<name>')
 def success(name):
-    return "welcome " + name
+    # Make a Response object
 
+    res = make_response("welcome " + name + "<br>" +
+                        "Cookie name : " + request.cookies.get('name'))
+    return res
+
+
+# --------------------------------------------------------------------------------------#
 
 """
 Use Web templates to serve dynamic web content using Jinja2 Template engine
