@@ -18,3 +18,5 @@ print(dict[0], ",", dict["zero"])
 print(dict.get(0), ",", dict.get('zero'))
 # if invalid key is paased then None is returned. Or we can pass a default value for incorrect keys
 print(dict.get(2, "invalid key"))
+
+print(dict.values())

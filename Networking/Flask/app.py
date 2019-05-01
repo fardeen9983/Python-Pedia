@@ -1,5 +1,5 @@
 # Import flask module
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, render_template
 
 # Create a Flask app with name of current module as argument
 app = Flask(__name__)
@@ -114,6 +114,37 @@ def login():
 @app.route('/success/<name>')
 def success(name):
     return "welcome " + name
+
+
+"""
+Use Web templates to serve dynamic web content using Jinja2 Template engine
+Do so by using delimiters for escaping from HTML
+{% ... %} - statements
+{{ ... }} - print the result of expressions 
+{# ... #} - comments 
+# .... ## - for line statements
+HTML file used - template.html
+"""
+
+
+# Render the template on the given route. Import render_template
+@app.route("/welcome/<name>")
+def welcome_name(name):
+    # Render the specified File with dynamic arguments. Place the file to be rendered in the templates folder.
+    return render_template('template.html', name=name)
+
+
+# Conditional templates
+@app.route("/score/<float:marks>")
+def score(marks):
+    return render_template("conditional.html", marks=marks)
+
+
+# Iterative templates
+@app.route("/result")
+def result():
+    dictionary = {'Physics': 50, "Chemistry": 67, 'Mathematics': 78}
+    return render_template('iterative.html', result=dictionary)
 
 
 # This will just make the Flask app run on the server if current module is the main one
