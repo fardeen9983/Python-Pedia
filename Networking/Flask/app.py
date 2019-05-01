@@ -5,6 +5,16 @@ from flask import Flask, redirect, url_for, request, render_template, make_respo
 app = Flask(__name__)
 
 """
+Flask Extensions :
+Flask mail       - SMTP interface
+Flask WTF        - Rendering and validation of WTForms
+Flask SQLAlchemy - SQLAlchemy support
+Flask Sijax      - Interface for Sijax - Python/jQuery library
+"""
+
+# --------------------------------------------------------------------------------------#
+
+"""
 Create a HTTP route
 It is basically a decorator with binds the URL to a particular function
 We can access the request and response arguments of the HTTP request
@@ -80,6 +90,31 @@ def hello_user(name):
     else:
         return redirect(url_for('hello_guest'))
 
+
+"""
+The redirect method -> Flask.redirect(location,statuscode,response)
+Arguments :
+location : URL to be redirected to 
+statuscode : Statuscode of response to be sent to browser
+    300 : Multiple choices
+    301 : Moved permanently
+    302 : Found
+    303 : See other
+    304 : Not modified
+    305 : Use Proxy
+    306 : Reserved
+response : Send the instatnitated response object to hte browser
+
+The abort method -> Flask.abort(code)
+code :
+    400 : Bad request
+    401 : Unauthorized
+    403 : Forbidden
+    404 : Not found
+    406 : Not acceptable
+    415 : Unsupported media type
+    429 : Too many request 
+"""
 
 # --------------------------------------------------------------------------------------#
 
@@ -176,6 +211,8 @@ def result():
     dictionary = {'Physics': 50, "Chemistry": 67, 'Mathematics': 78}
     return render_template('iterative.html', result=dictionary)
 
+
+# --------------------------------------------------------------------------------------#
 
 # This will just make the Flask app run on the server if current module is the main one
 if __name__ == '__main__':
