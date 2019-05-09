@@ -126,3 +126,46 @@ print("Element at 3nd row and 3rd column : ", a[2, 2])
 # Assigning values by index
 a[2, 2] = 4
 print("Element at 3nd row and 3rd column : ", a[2, 2])
+
+# Fetch values at given index
+a = np.arange(0, 25)
+
+# Fetch only even indexed values
+index = [i for i in range(0, a.__len__(), 3)]
+print("Custom indexed a :", a[index])
+
+# Assign values to given index
+a[index] = -2
+print("Changed indexed a :", a)
+
+"""
+Slicing : It is similar to how we did it in normal arrays 
+"""
+
+# Sample array
+a = np.arange(10)
+
+# slice using indices ( start and end index (exclusive) and step size)
+print("a[1:8:2] : ", a[1:8:2])
+
+# Slicing and assignment: Assign values to all the elements from index 5
+a[5:] = 10
+print("a :", a)
+
+# Assign reverse of an array to another
+b = np.arange(5)
+a[5:] = b[::-1]
+print("Mix a :", a)
+
+# Masking : FIlter through the array elements using a masking operation
+a = np.arange(20)
+# Create a  mask (operation on array)
+# It is an bool array representing truth values for each element over the given operation
+mask = ((a ** 2) % 4 == 0)
+mask_output = a[mask]
+print("Mask output:", mask_output)
+
+# Make changes to the masked values
+# That is, make changes to values that satisfy the mask operation as a whole
+a[mask] = -1
+print("Final mask : ", a)
